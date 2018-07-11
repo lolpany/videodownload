@@ -8813,6 +8813,11 @@ function transformUrl(url) {
 }
 
 function drawButtons(title, formats) {
+    processVideos(title, formats);
+    processAudios(title, formats);
+}
+
+function processVideos(title, formats) {
     var resolutions = Array.from(new Set(formats.filter(format => format.resolution != null && format.resolution.endsWith('p')).
     map(format => format.resolution))).sort(function(a, b) {return parseInt(b) - parseInt(a)});
     var videos = [];
@@ -8830,12 +8835,10 @@ function drawButtons(title, formats) {
                 } else {
                     return -1;
                 }
-        })[0]);
+            })[0]);
     }
     var fulls = formats.filter(format => format.resolution != null && format.audioBitrate != null && format.container != 'webm').
     sort(function(a, b) {return parseInt(b.resolution) - parseInt(a.resolution)});
-    var audios = formats.filter(format => format.resolution == null && format.audioBitrate != null).
-    sort(function(a, b) {return parseInt(b.audioBitrate) - parseInt(a.audioBitrate)});
     var highestVideos = formats.filter(format => format.resolution != null).sort(function(a, b) {
         return parseInt(b.resolution) - parseInt(a.resolution)
     });
@@ -8845,7 +8848,6 @@ function drawButtons(title, formats) {
         }
     }
     drawVideos(title, videos);
-    // drawAudios();
 }
 
 function drawVideos(title, videos) {
@@ -8856,6 +8858,7 @@ function drawVideos(title, videos) {
     for (var i in Object.keys(videoButtons)) {
         videoButtons[i].style.visibility = 'visible';
         setVideoButtonDisabled(videoButtons[i]);
+        Object.assign(videoButtons[i].style, {'background-image' : "none"});
     }
     for (let i = 0; i < videos.length; i++) {
         var button = document.getElementById('p' + videos[i].resolution.substr(0, videos[i].resolution.length - 1));
@@ -8869,18 +8872,40 @@ function drawVideos(title, videos) {
     }
 }
 
-function download(url) {
-    var link = document.createElement("a");
-    link.download = name;
-    link.href = url;
-    link.click();
-}
+// function download(url) {
+//     var link = document.createElement("a");
+//     link.download = name;
+//     link.href = url;
+//     link.click();
+// }
 
 function setVideoButtonDisabled(button) {
     button.classList.remove('disabled');
     button.classList.add('disabled');
 }
 
+function processAudios(title, formats) {
+    var audios = formats.filter(format => format.resolution == null && format.audioBitrate != null).
+    sort(function(a, b) {return parseInt(b.audioBitrate) - parseInt(a.audioBitrate)});
+    drawAudios(title, audios);
+}
+
+function drawAudios(title, audios) {
+    var audioLabel = document.getElementById('audioLabel');
+    audioLabel.classList.remove('disabled');
+    var audioButtons = document.getElementsByClassName('audioButton');
+    for (var i in Object.keys(audioButtons)) {
+        audioButtons[i].style.visibility = 'visible';
+        setVideoButtonDisabled(audioButtons[i]);
+    }
+    for (let i = 0; i < audios.length; i++) {
+        var button = document.getElementById('kb' + audios[i].audioBitrate);
+        button.style.visibility  = 'visible';
+        button.classList.remove('disabled');
+        button.children[0].setAttribute('href', audios[i].url);
+        button.children[0].setAttribute('download', title);
+    }
+}
 },{"ytdl-core":57}],47:[function(require,module,exports){
 module.exports = {
   XmlEntities: require('./lib/xml-entities.js'),

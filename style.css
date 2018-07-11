@@ -200,4 +200,114 @@ body {
     /*visibility: hidden;*/
 }
 
+#audioLabel {
+    padding: auto;
+    display: flex;
+    grid-column: 1/2;
+    /*margin: 1vh;*/
+    justify-content: center;
+    align-items: center;
+}
 
+#audioLabel.disabled {
+    color: #f3f3f3;
+}
+
+.audioButton {
+    padding: auto;
+    display: flex;
+    grid-column: 2/3;
+    margin: 1vh;
+    border: 2px dotted dimgrey;
+    justify-content: center;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position-x: 3%;
+}
+
+.audioButton.disabled {
+    border-color: #f3f3f3;
+}
+
+.audioButton.disabled > a {
+    color: #f3f3f3;
+}
+
+.audioButton:hover {
+    background-color: #b0eeb0;
+    border-color: darkgreen;
+    color: darkgreen;
+}
+
+.audioButton.disabled:hover {
+    background-color: white;
+    border-color: #f3f3f3;
+    /*color: dimgrey;*/
+}
+
+.audioButton:active {
+    background-color: lime;
+    border-color: darkgreen;
+    color: darkgreen;
+}
+
+.audioButton.disabled:active {
+    background-color: white;
+    border-color: #f3f3f3;
+    /*color: darkgreen;*/
+}
+
+.audioButton > a {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: dimgray;
+    text-decoration: none;
+}
+
+#audioLabel {
+    grid-column: 2/3;
+    grid-row: 1/2;
+    /*visibility: hidden;*/
+}
+
+#p2160 {
+    grid-row: 2/3;
+    /*visibility: hidden;*/
+}
+
+#p1440 {
+    grid-row: 3/4;
+    /*visibility: hidden;*/
+}
+
+#p1080 {
+    grid-row: 4/5;
+    /*visibility: hidden;*/
+}
+
+#p720 {
+    grid-row: 5/6;
+    /*visibility: hidden;*/
+}
+
+#p480 {
+    grid-row: 6/7;
+    /*visibility: hidden;*/
+}
+
+#p360 {
+    grid-row: 7/8;
+    /*visibility: hidden;*/
+}
+
+#p240 {
+    grid-row: 8/9;
+    /*visibility: hidden;*/
+}
+
+#p144 {
+    grid-row: 9/10;
+    /*visibility: hidden;*/
+}
