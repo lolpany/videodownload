@@ -82,8 +82,8 @@ function processVideos(title, formats) {
 }
 
 function drawVideos(title, videos) {
-    var videoLabel = document.getElementById('videoLabel');
-    videoLabel.classList.remove('disabled');
+    // var videoLabel = document.getElementById('videoLabel');
+    // videoLabel.classList.remove('disabled');
     document.getElementById('previewImg').classList.remove('disabled');
     var videoButtons = document.getElementsByClassName('videoButton');
     for (var i in Object.keys(videoButtons)) {
@@ -122,8 +122,8 @@ function processAudios(title, formats) {
 }
 
 function drawAudios(title, audios) {
-    var audioLabel = document.getElementById('audioLabel');
-    audioLabel.classList.remove('disabled');
+    // var audioLabel = document.getElementById('audioLabel');
+    // audioLabel.classList.remove('disabled');
     var audioButtons = document.getElementsByClassName('audioButton');
     for (var i in Object.keys(audioButtons)) {
         audioButtons[i].style.visibility = 'visible';
