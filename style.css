@@ -1,0 +1,203 @@
+@media (max-aspect-ratio: 6/5) {
+
+
+}
+
+@media (min-aspect-ratio: 6/5) and (max-width: 900px) {
+
+}
+
+@media (min-aspect-ratio: 6/5) and (min-width: 900px) {
+
+
+}
+
+
+html {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    cursor: default;
+}
+
+body {
+    color: dimgrey;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: 2fr 4fr 12fr 6fr;
+    height: 98%;
+    width: 98vw;
+    display: grid;
+    margin: 0;
+}
+
+#urlLabel {
+    grid-column: 3/7;
+    grid-row: 1/2;
+    font-size: 3vh;
+    color: dimgrey;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+#url {
+    grid-column: 3/7;
+    grid-row: 2/3;
+    height: 5vh;
+    width: 100%;
+    font-size: 3vh;
+    margin-top: 0;
+    margin-bottom: auto;
+    border: 2px dotted dimgrey;
+    text-align: center;
+}
+
+#central {
+    grid-column: 2/8;
+    grid-row: 3/4;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(7, 1fr);
+}
+
+#preview {
+    grid-column: 1/4;
+    grid-row: 2/8;
+    display: flex;
+}
+
+#previewImg {
+    width: 100%;
+    height: 56%;
+    /*height: auto;*/
+    margin-top: auto;
+    margin-bottom: auto;
+    border: 2px dotted dimgrey;
+}
+
+#previewImg.disabled {
+    border: 2px dotted #f3f3f3;
+}
+
+#downloadButtons {
+    grid-column: 4/6;
+    grid-row: 1/8;
+    font-size: 3vh;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(9, 1fr);
+}
+
+#videoLabel {
+    padding: auto;
+    display: flex;
+    grid-column: 1/2;
+    /*margin: 1vh;*/
+    justify-content: center;
+    align-items: center;
+}
+
+#videoLabel.disabled {
+    color: #f3f3f3;
+}
+
+.videoButton {
+    padding: auto;
+    display: flex;
+    grid-column: 1/2;
+    margin: 1vh;
+    border: 2px dotted dimgrey;
+    justify-content: center;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position-x: 3%;
+}
+
+.videoButton.disabled {
+    border-color: #f3f3f3;
+}
+
+.videoButton.disabled > a {
+    color: #f3f3f3;
+}
+
+.videoButton:hover {
+    background-color: #b0eeb0;
+    border-color: darkgreen;
+    color: darkgreen;
+}
+
+.videoButton.disabled:hover {
+    background-color: white;
+    border-color: #f3f3f3;
+    /*color: dimgrey;*/
+}
+
+.videoButton:active {
+    background-color: lime;
+    border-color: darkgreen;
+    color: darkgreen;
+}
+
+.videoButton.disabled:active {
+    background-color: white;
+    border-color: #f3f3f3;
+    /*color: darkgreen;*/
+}
+
+.videoButton > a {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: dimgray;
+    text-decoration: none;
+}
+
+#videoLabel {
+    grid-row: 1/2;
+    /*visibility: hidden;*/
+}
+
+#p2160 {
+    grid-row: 2/3;
+    /*visibility: hidden;*/
+}
+
+#p1440 {
+    grid-row: 3/4;
+    /*visibility: hidden;*/
+}
+
+#p1080 {
+    grid-row: 4/5;
+    /*visibility: hidden;*/
+}
+
+#p720 {
+    grid-row: 5/6;
+    /*visibility: hidden;*/
+}
+
+#p480 {
+    grid-row: 6/7;
+    /*visibility: hidden;*/
+}
+
+#p360 {
+    grid-row: 7/8;
+    /*visibility: hidden;*/
+}
+
+#p240 {
+    grid-row: 8/9;
+    /*visibility: hidden;*/
+}
+
+#p144 {
+    grid-row: 9/10;
+    /*visibility: hidden;*/
+}
+
+
