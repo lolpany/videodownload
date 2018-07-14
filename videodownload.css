@@ -70,7 +70,7 @@ body {
 
 #previewImg {
     width: 100%;
-    height: auto;
+    height: 0;
     margin-top: auto;
     margin-bottom: auto;
     border: 2px dotted dimgrey;

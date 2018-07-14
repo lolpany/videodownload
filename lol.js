@@ -8821,14 +8821,12 @@ function transformUrl(url) {
     if (url.host == 'manifest.googlevideo.com') {
         url.host = proxyHost;
         url.hostname = proxyHost;
-        // url.port = 81;
         url.protocol = 'http:';
         url.path = '/vid/' + url.href.split('/').slice(3).join('/');
         url.href = 'http://' + proxyHost + url.path;
     } else if (url.host == 'www.youtube.com') {
         url.host = proxyHost;
         url.hostname = proxyHost;
-        // url.port = 81;
         url.protocol = 'http:';
         url.path = '/you/' + url.href.split('/').slice(3).join('/')
         url.href = 'http://' + proxyHost + url.path;
