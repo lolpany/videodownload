@@ -1,0 +1,8 @@
+{
+  "name": "videodownload",
+  "version": "1.0.0",
+  "dependencies": {
+    "https-proxy-agent": "^2.2.1",
+    "ytdl-core": "latest"
+  }
+}

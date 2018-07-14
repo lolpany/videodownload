@@ -8767,9 +8767,14 @@ function extend() {
 }
 
 },{}],46:[function(require,module,exports){
+const urlParse = require('url').parse;
 const ytdl = require('ytdl-core');
+const http = require('http');
+const https = require('https');
 
-window.onload = function() {
+const proxyHost = '149.56.251.89';
+
+window.onload = function () {
     window.onpopstate = processUrl;
     document.getElementById('url').addEventListener('change', validateUrl);
     processUrl();
@@ -8814,11 +8819,19 @@ function fetchYoutubeUrl(info, options) {
 
 function transformUrl(url) {
     if (url.host == 'manifest.googlevideo.com') {
-        url.host = 'ec2-18-216-128-220.us-east-2.compute.amazonaws.com';
-        url.hostname = 'ec2-18-216-128-220.us-east-2.compute.amazonaws.com';
-        url.port = 81;
+        url.host = proxyHost;
+        url.hostname = proxyHost;
+        // url.port = 81;
         url.protocol = 'http:';
-        url.href = 'http://ec2-18-216-128-220.us-east-2.compute.amazonaws.com:81/' + url.href.split('/').slice(3).join('/')
+        url.path = '/vid/' + url.href.split('/').slice(3).join('/');
+        url.href = 'http://' + proxyHost + url.path;
+    } else if (url.host == 'www.youtube.com') {
+        url.host = proxyHost;
+        url.hostname = proxyHost;
+        // url.port = 81;
+        url.protocol = 'http:';
+        url.path = '/you/' + url.href.split('/').slice(3).join('/')
+        url.href = 'http://' + proxyHost + url.path;
     }
     return url;
 }
@@ -8829,12 +8842,14 @@ function drawButtons(info, formats) {
 }
 
 function processVideos(info, formats) {
-    var resolutions = Array.from(new Set(formats.filter(format => format.resolution != null && format.resolution.endsWith('p')).
-    map(format => format.resolution))).sort(function(a, b) {return parseInt(b) - parseInt(a)});
+    var resolutions = Array.from(new Set(formats.filter(format => format.resolution != null && format.resolution.endsWith('p')).map(format => format.resolution)
+    )).sort(function (a, b) {
+        return parseInt(b) - parseInt(a)
+    });
     var videos = [];
     for (var i in resolutions) {
         videos.push(formats.filter(format => format.resolution != null && format.resolution == resolutions[i])
-            .sort(function(a, b) {
+            .sort(function (a, b) {
                 if (a.audioBitrate != null && a.container == 'mp4') {
                     return -1;
                 } else if (b.audioBitrate != null && b.container == 'mp4') {
@@ -8846,11 +8861,15 @@ function processVideos(info, formats) {
                 } else {
                     return -1;
                 }
-            })[0]);
+            })[0]
+        );
     }
-    var fulls = formats.filter(format => format.resolution != null && format.audioBitrate != null && format.container != 'webm').
-    sort(function(a, b) {return parseInt(b.resolution) - parseInt(a.resolution)});
-    var highestVideos = formats.filter(format => format.resolution != null).sort(function(a, b) {
+    var fulls = formats.filter(format => format.resolution != null && format.audioBitrate != null && format.container != 'webm'
+    ).sort(function (a, b) {
+        return parseInt(b.resolution) - parseInt(a.resolution)
+    });
+    var highestVideos = formats.filter(format => format.resolution != null
+    ).sort(function (a, b) {
         return parseInt(b.resolution) - parseInt(a.resolution)
     });
     for (var i in highestVideos) {
@@ -8870,12 +8889,12 @@ function drawVideos(info, videos) {
     document.getElementById('previewImg').style.height = 'auto';
     for (let i = 0; i < videos.length; i++) {
         var button = document.getElementById('p' + videos[i].resolution.substr(0, videos[i].resolution.length - 1));
-        button.style.visibility  = 'visible';
+        button.style.visibility = 'visible';
         button.classList.remove('disabled');
         button.children[0].setAttribute('href', videos[i].url);
         button.children[0].setAttribute('download', info.title);
         if (videos[i].audioBitrate == null) {
-            Object.assign(button.style, {'background-image' : "url('./no-sound.png')"});
+            Object.assign(button.style, {'background-image': "url('./no-sound.png')"});
         }
     }
 }
@@ -8891,7 +8910,7 @@ function drawDisabledVideos() {
     for (var i in Object.keys(videoButtons)) {
         videoButtons[i].style.visibility = 'visible';
         setVideoButtonDisabled(videoButtons[i]);
-        Object.assign(videoButtons[i].style, {'background-image' : "none"});
+        Object.assign(videoButtons[i].style, {'background-image': "none"});
     }
 }
 
@@ -8908,8 +8927,10 @@ function setVideoButtonDisabled(button) {
 }
 
 function processAudios(title, formats) {
-    var audios = formats.filter(format => format.resolution == null && format.audioBitrate != null).
-    sort(function(a, b) {return parseInt(b.audioBitrate) - parseInt(a.audioBitrate)});
+    var audios = formats.filter(format => format.resolution == null && format.audioBitrate != null
+    ).sort(function (a, b) {
+        return parseInt(b.audioBitrate) - parseInt(a.audioBitrate)
+    });
     drawAudios(title, audios);
 }
 
@@ -8917,7 +8938,7 @@ function drawAudios(title, audios) {
     drawDisabledAudios();
     for (let i = 0; i < audios.length; i++) {
         var button = document.getElementById('kb' + audios[i].audioBitrate);
-        button.style.visibility  = 'visible';
+        button.style.visibility = 'visible';
         button.classList.remove('disabled');
         button.children[0].setAttribute('href', audios[i].url);
         button.children[0].setAttribute('download', title);
@@ -8934,7 +8955,7 @@ function drawDisabledAudios() {
         setVideoButtonDisabled(audioButtons[i]);
     }
 }
-},{"ytdl-core":57}],47:[function(require,module,exports){
+},{"http":33,"https":7,"url":40,"ytdl-core":57}],47:[function(require,module,exports){
 module.exports = {
   XmlEntities: require('./lib/xml-entities.js'),
   Html4Entities: require('./lib/html4-entities.js'),
@@ -9724,7 +9745,7 @@ module.exports = (url, options, callback) => {
     }
 
     req = httpLib.get(parsed, (res) => {
-      if (redirectCodes[res.statusCode] === true) {
+      if (redirectCodes[res.statusCode] === true) {2
         if (tryCount >= maxRedirects) {
           onError(new Error('Too many redirects'));
         } else {
@@ -12284,10 +12305,10 @@ const sig         = require('./sig');
 const FORMATS     = require('./formats');
 
 
-const VIDEO_URL = 'http://ec2-18-216-128-220.us-east-2.compute.amazonaws.com/watch?v=';
-const EMBED_URL = 'http://ec2-18-216-128-220.us-east-2.compute.amazonaws.com/embed/';
-const VIDEO_EURL = 'http://ec2-18-216-128-220.us-east-2.compute.amazonaws.com/http://youtube.googleapis.com/v/';
-const INFO_HOST = 'ec2-18-216-128-220.us-east-2.compute.amazonaws.com';
+const VIDEO_URL = 'https://www.youtube.com/watch?v=';
+const EMBED_URL = 'https://www.youtube.com/embed/';
+const VIDEO_EURL = 'https://youtube.googleapis.com/v/';
+const INFO_HOST = 'www.youtube.com';
 const INFO_PATH = '/get_video_info';
 const KEYS_TO_SPLIT = [
   'keywords',
@@ -12397,7 +12418,7 @@ function gotConfig(id, options, additional, config, fromEmbed, callback) {
     return callback(new Error('Error parsing config: ' + err.message));
   }
   var url = urllib.format({
-    protocol: 'http',
+    protocol: 'https',
     host: INFO_HOST,
     pathname: INFO_PATH,
     query: {
@@ -13262,8 +13283,8 @@ exports.getAuthor = (body) => {
     avatar: url.resolve(VIDEO_URL, exports.between(ownerinfo,
       'data-thumb="', '"')),
     user: userMatch ? userMatch[1] : null,
-    channel_url: 'http://localhost/channel/' + channelMatch[1],
-    user_url: userMatch ? 'http://localhost/user/' + userMatch[1] : null,
+    channel_url: 'https://www.youtube.com/channel/' + channelMatch[1],
+    user_url: userMatch ? 'https://www.youtube.com/user/' + userMatch[1] : null,
   };
 };
 
