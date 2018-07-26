@@ -80,7 +80,7 @@ body {
     border: 2px dotted #f3f3f3;
 }
 
-#downloadButtons {
+#youtubeDownloadButtons {
     grid-column: 4/6;
     grid-row: 1/8;
     font-size: 3vh;
@@ -90,11 +90,45 @@ body {
     grid-template-rows: repeat(8, 1fr);
 }
 
+#youtubeDownloadButtons.disabled {
+    display: none;
+}
+
+#facebookDownloadButtons {
+    grid-column: 4/6;
+    grid-row: 1/8;
+    font-size: 6vh;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+#facebookDownloadButtons.disabled {
+    display: none;
+}
+
+#facebookHd {
+    margin: 0.2vh;
+}
+
+#facebookHd.disabled {
+
+}
+
+#facebookSd {
+    margin: 0.2vh;
+    /*grid-row: 3;*/
+}
+
+#facebookSd.disabled {
+
+}
+
 #videoLabel {
     padding: auto;
     display: flex;
     grid-column: 1/2;
-    /*margin: 1vh;*/
     justify-content: center;
     align-items: center;
 }

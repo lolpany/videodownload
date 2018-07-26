@@ -31,7 +31,7 @@ function validateUrl() {
         if (parsedUrl.host == 'www.youtube.com') {
             fetchInfo(url);
         } else if (parsedUrl.host == 'www.facebook.com') {
-            fb.getInfo(transformUrl(parsedUrl).toString()).then((info) => console.log(JSON.stringify(info, null, 2)));
+            fb.getInfo(transformUrl(parsedUrl).toString()).then((info) => drawFacebook(info));
         }
     }
 }
@@ -78,11 +78,40 @@ function transformUrl(url) {
     return url;
 }
 
-function youTubeToInfo(info) {
-    return
+function disableAll() {
+    var youtube = document.getElementById('youtubeDownloadButtons');
+    youtube.classList.remove('enabled');
+    youtube.classList.add('disabled');
+    var facebook = document.getElementById('facebookDownloadButtons');
+    facebook.classList.remove('enabled');
+    facebook.classList.add('disabled');
+}
+
+function drawFacebook(info) {
+    disableAll();
+    var facebook = document.getElementById('facebookDownloadButtons');
+    facebook.classList.remove('disabled');
+    facebook.classList.add('enabled');
+    drawDisabledVideos();
+    document.getElementById('previewImg').setAttribute('src', info.thumb);
+    document.getElementById('previewImg').style.height = 'auto';
+    if (info.download.hd != null) {
+        var facebookButtons = document.getElementById('facebookDownloadButtons').children;
+        for (let i in facebookButtons) {
+            let button = facebookButtons[i];
+            button.style.visibility = 'visible';
+            button.classList.remove('disabled');
+            button.children[0].setAttribute('href', info.download[Object.keys(info.download)[i]]);
+            button.children[0].setAttribute('download', info.title);
+        }
+    }
 }
 
 function drawButtons(info, formats) {
+    disableAll();
+    var youtube = document.getElementById('youtubeDownloadButtons');
+    youtube.classList.remove('disabled');
+    youtube.classList.add('enabled');
     processVideos(info, formats);
     processAudios(info.title, formats);
 }
