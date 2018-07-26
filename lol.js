@@ -32885,8 +32885,8 @@ const proxyHost = '149.56.251.89';
 
 window.onload = function () {
     window.onpopstate = processUrl;
-    document.getElementById('url').addEventListener('change', validateUrl);
-    document.getElementById('url').addEventListener('paste', validateUrl);
+    document.getElementById('url').addEventListener('input', validateUrl);
+    // document.getElementById('url').addEventListener('paste', validateUrl);
     processUrl();
 };
 
