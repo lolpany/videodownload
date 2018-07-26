@@ -3128,31 +3128,6 @@
       </sourceFilesUrls>
     </properties>
     <CLASSES>
-      <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/bluebird/js/browser/bluebird.core.min.js" />
-      <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/bluebird/js/browser/bluebird.min.js" />
-      <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/imurmurhash/imurmurhash.min.js" />
-      <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/npm-profile/node_modules/make-fetch-happen/node_modules/http-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/dist/es6-promise.auto.min.js" />
-      <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/npm-profile/node_modules/make-fetch-happen/node_modules/http-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/dist/es6-promise.min.js" />
-      <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/npm-profile/node_modules/make-fetch-happen/node_modules/https-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/dist/es6-promise.auto.min.js" />
-      <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/npm-profile/node_modules/make-fetch-happen/node_modules/https-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/dist/es6-promise.min.js" />
-      <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/npm-profile/node_modules/make-fetch-happen/node_modules/socks-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/dist/es6-promise.auto.min.js" />
-      <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/npm-profile/node_modules/make-fetch-happen/node_modules/socks-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/dist/es6-promise.min.js" />
-      <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/pacote/node_modules/make-fetch-happen/node_modules/http-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/dist/es6-promise.auto.min.js" />
-      <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/pacote/node_modules/make-fetch-happen/node_modules/http-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/dist/es6-promise.min.js" />
-      <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/pacote/node_modules/make-fetch-happen/node_modules/https-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/dist/es6-promise.auto.min.js" />
-      <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/pacote/node_modules/make-fetch-happen/node_modules/https-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/dist/es6-promise.min.js" />
-      <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/pacote/node_modules/make-fetch-happen/node_modules/socks-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/dist/es6-promise.auto.min.js" />
-      <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/pacote/node_modules/make-fetch-happen/node_modules/socks-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/dist/es6-promise.min.js" />
-      <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/read/node_modules/mute-stream/coverage/lcov-report/prettify.js" />
-      <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/request/node_modules/har-validator/node_modules/ajv/dist/ajv.min.js" />
-      <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/request/node_modules/har-validator/node_modules/ajv/dist/nodent.min.js" />
-      <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/request/node_modules/har-validator/node_modules/ajv/dist/regenerator.min.js" />
-      <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/request/node_modules/http-signature/node_modules/sshpk/node_modules/tweetnacl/nacl-fast.min.js" />
-      <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/request/node_modules/http-signature/node_modules/sshpk/node_modules/tweetnacl/nacl.min.js" />
-      <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/unique-filename/coverage/prettify.js" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES>
       <root url="file://C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/bin/npx-cli.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/html/static/toc.js" />
@@ -3414,7 +3389,9 @@
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/bin-links/index.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/bin-links/package.json" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/bluebird/js/browser/bluebird.core.js" />
+      <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/bluebird/js/browser/bluebird.core.min.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/bluebird/js/browser/bluebird.js" />
+      <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/bluebird/js/browser/bluebird.min.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/bluebird/js/release/any.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/bluebird/js/release/assert.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/bluebird/js/release/async.js" />
@@ -4070,6 +4047,7 @@
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/iferr/package.json" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/iferr/test/index.coffee" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/imurmurhash/imurmurhash.js" />
+      <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/imurmurhash/imurmurhash.min.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/imurmurhash/package.json" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/inflight/inflight.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/inflight/package.json" />
@@ -4629,7 +4607,9 @@
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/npm-profile/node_modules/make-fetch-happen/node_modules/http-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/dist/promisify.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/npm-profile/node_modules/make-fetch-happen/node_modules/http-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/auto.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/npm-profile/node_modules/make-fetch-happen/node_modules/http-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/dist/es6-promise.auto.js" />
+      <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/npm-profile/node_modules/make-fetch-happen/node_modules/http-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/dist/es6-promise.auto.min.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/npm-profile/node_modules/make-fetch-happen/node_modules/http-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/dist/es6-promise.js" />
+      <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/npm-profile/node_modules/make-fetch-happen/node_modules/http-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/dist/es6-promise.min.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/npm-profile/node_modules/make-fetch-happen/node_modules/http-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/es6-promise.d.ts" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/npm-profile/node_modules/make-fetch-happen/node_modules/http-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/lib/es6-promise.auto.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/npm-profile/node_modules/make-fetch-happen/node_modules/http-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/lib/es6-promise.js" />
@@ -4668,7 +4648,9 @@
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/npm-profile/node_modules/make-fetch-happen/node_modules/https-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/dist/promisify.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/npm-profile/node_modules/make-fetch-happen/node_modules/https-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/auto.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/npm-profile/node_modules/make-fetch-happen/node_modules/https-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/dist/es6-promise.auto.js" />
+      <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/npm-profile/node_modules/make-fetch-happen/node_modules/https-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/dist/es6-promise.auto.min.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/npm-profile/node_modules/make-fetch-happen/node_modules/https-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/dist/es6-promise.js" />
+      <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/npm-profile/node_modules/make-fetch-happen/node_modules/https-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/dist/es6-promise.min.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/npm-profile/node_modules/make-fetch-happen/node_modules/https-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/es6-promise.d.ts" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/npm-profile/node_modules/make-fetch-happen/node_modules/https-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/lib/es6-promise.auto.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/npm-profile/node_modules/make-fetch-happen/node_modules/https-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/lib/es6-promise.js" />
@@ -4755,7 +4737,9 @@
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/npm-profile/node_modules/make-fetch-happen/node_modules/socks-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/dist/promisify.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/npm-profile/node_modules/make-fetch-happen/node_modules/socks-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/auto.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/npm-profile/node_modules/make-fetch-happen/node_modules/socks-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/dist/es6-promise.auto.js" />
+      <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/npm-profile/node_modules/make-fetch-happen/node_modules/socks-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/dist/es6-promise.auto.min.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/npm-profile/node_modules/make-fetch-happen/node_modules/socks-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/dist/es6-promise.js" />
+      <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/npm-profile/node_modules/make-fetch-happen/node_modules/socks-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/dist/es6-promise.min.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/npm-profile/node_modules/make-fetch-happen/node_modules/socks-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/es6-promise.d.ts" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/npm-profile/node_modules/make-fetch-happen/node_modules/socks-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/lib/es6-promise.auto.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/npm-profile/node_modules/make-fetch-happen/node_modules/socks-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/lib/es6-promise.js" />
@@ -4959,7 +4943,9 @@
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/pacote/node_modules/make-fetch-happen/node_modules/http-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/dist/promisify.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/pacote/node_modules/make-fetch-happen/node_modules/http-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/auto.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/pacote/node_modules/make-fetch-happen/node_modules/http-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/dist/es6-promise.auto.js" />
+      <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/pacote/node_modules/make-fetch-happen/node_modules/http-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/dist/es6-promise.auto.min.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/pacote/node_modules/make-fetch-happen/node_modules/http-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/dist/es6-promise.js" />
+      <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/pacote/node_modules/make-fetch-happen/node_modules/http-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/dist/es6-promise.min.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/pacote/node_modules/make-fetch-happen/node_modules/http-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/es6-promise.d.ts" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/pacote/node_modules/make-fetch-happen/node_modules/http-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/lib/es6-promise.auto.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/pacote/node_modules/make-fetch-happen/node_modules/http-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/lib/es6-promise.js" />
@@ -4998,7 +4984,9 @@
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/pacote/node_modules/make-fetch-happen/node_modules/https-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/dist/promisify.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/pacote/node_modules/make-fetch-happen/node_modules/https-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/auto.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/pacote/node_modules/make-fetch-happen/node_modules/https-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/dist/es6-promise.auto.js" />
+      <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/pacote/node_modules/make-fetch-happen/node_modules/https-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/dist/es6-promise.auto.min.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/pacote/node_modules/make-fetch-happen/node_modules/https-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/dist/es6-promise.js" />
+      <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/pacote/node_modules/make-fetch-happen/node_modules/https-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/dist/es6-promise.min.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/pacote/node_modules/make-fetch-happen/node_modules/https-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/es6-promise.d.ts" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/pacote/node_modules/make-fetch-happen/node_modules/https-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/lib/es6-promise.auto.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/pacote/node_modules/make-fetch-happen/node_modules/https-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/lib/es6-promise.js" />
@@ -5075,7 +5063,9 @@
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/pacote/node_modules/make-fetch-happen/node_modules/socks-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/dist/promisify.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/pacote/node_modules/make-fetch-happen/node_modules/socks-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/auto.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/pacote/node_modules/make-fetch-happen/node_modules/socks-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/dist/es6-promise.auto.js" />
+      <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/pacote/node_modules/make-fetch-happen/node_modules/socks-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/dist/es6-promise.auto.min.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/pacote/node_modules/make-fetch-happen/node_modules/socks-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/dist/es6-promise.js" />
+      <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/pacote/node_modules/make-fetch-happen/node_modules/socks-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/dist/es6-promise.min.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/pacote/node_modules/make-fetch-happen/node_modules/socks-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/es6-promise.d.ts" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/pacote/node_modules/make-fetch-happen/node_modules/socks-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/lib/es6-promise.auto.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/pacote/node_modules/make-fetch-happen/node_modules/socks-proxy-agent/node_modules/agent-base/node_modules/es6-promisify/node_modules/es6-promise/lib/es6-promise.js" />
@@ -5213,6 +5203,7 @@
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/read-package-tree/package.json" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/read-package-tree/rpt.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/read/lib/read.js" />
+      <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/read/node_modules/mute-stream/coverage/lcov-report/prettify.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/read/node_modules/mute-stream/coverage/lcov-report/sorter.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/read/node_modules/mute-stream/mute.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/read/node_modules/mute-stream/package.json" />
@@ -5310,6 +5301,9 @@
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/request/node_modules/har-validator/lib/promise.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/request/node_modules/har-validator/node_modules/ajv/.tonic_example.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/request/node_modules/har-validator/node_modules/ajv/dist/ajv.bundle.js" />
+      <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/request/node_modules/har-validator/node_modules/ajv/dist/ajv.min.js" />
+      <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/request/node_modules/har-validator/node_modules/ajv/dist/nodent.min.js" />
+      <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/request/node_modules/har-validator/node_modules/ajv/dist/regenerator.min.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/request/node_modules/har-validator/node_modules/ajv/lib/$data.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/request/node_modules/har-validator/node_modules/ajv/lib/ajv.d.ts" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/request/node_modules/har-validator/node_modules/ajv/lib/ajv.js" />
@@ -5494,8 +5488,10 @@
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/request/node_modules/http-signature/node_modules/sshpk/node_modules/jsbn/index.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/request/node_modules/http-signature/node_modules/sshpk/node_modules/jsbn/package.json" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/request/node_modules/http-signature/node_modules/sshpk/node_modules/tweetnacl/nacl-fast.js" />
+      <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/request/node_modules/http-signature/node_modules/sshpk/node_modules/tweetnacl/nacl-fast.min.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/request/node_modules/http-signature/node_modules/sshpk/node_modules/tweetnacl/nacl.d.ts" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/request/node_modules/http-signature/node_modules/sshpk/node_modules/tweetnacl/nacl.js" />
+      <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/request/node_modules/http-signature/node_modules/sshpk/node_modules/tweetnacl/nacl.min.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/request/node_modules/http-signature/node_modules/sshpk/node_modules/tweetnacl/package.json" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/request/node_modules/http-signature/node_modules/sshpk/package.json" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/request/node_modules/http-signature/package.json" />
@@ -5682,6 +5678,7 @@
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/umask/index.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/umask/package.json" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/umask/test/simple.js" />
+      <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/unique-filename/coverage/prettify.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/unique-filename/coverage/sorter.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/unique-filename/index.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/node_modules/unique-filename/node_modules/unique-slug/index.js" />
@@ -6276,6 +6273,8 @@
       <root url="file://C:/Program Files/nodejs/node_modules/npm/test/tap/version-update-shrinkwrap.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/test/tap/view.js" />
       <root url="file://C:/Program Files/nodejs/node_modules/npm/test/tap/zz-cleanup.js" />
-    </SOURCES>
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
   </library>
 </component>

@@ -2,7 +2,8 @@
   "name": "videodownload",
   "version": "1.0.0",
   "dependencies": {
+    "fb-video-downloader": "^1.0.3",
     "https-proxy-agent": "^2.2.1",
-    "ytdl-core": "latest"
+    "ytdl-core": "^0.20.4"
   }
 }

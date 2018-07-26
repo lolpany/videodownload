@@ -2,12 +2,14 @@ const urlParse = require('url').parse;
 const ytdl = require('ytdl-core');
 const http = require('http');
 const https = require('https');
+const fb = require('fb-video-downloader');
 
 const proxyHost = '149.56.251.89';
 
 window.onload = function () {
     window.onpopstate = processUrl;
     document.getElementById('url').addEventListener('change', validateUrl);
+    document.getElementById('url').addEventListener('paste', validateUrl);
     processUrl();
 };
 
@@ -17,7 +19,7 @@ function processUrl() {
         drawDisabledVideos();
         drawDisabledAudios();
         document.getElementById('url').value = url;
-        fetchInfo(url);
+        validateUrl();
     }
 }
 
@@ -25,7 +27,12 @@ function validateUrl() {
     var url = document.getElementById('url').value;
     if (url != null) {
         history.pushState(null, null, window.location.href.split('?', 2)[0] + '?url=' + encodeURIComponent(url));
-        fetchInfo(url);
+        var parsedUrl = new URL(url);
+        if (parsedUrl.host == 'www.youtube.com') {
+            fetchInfo(url);
+        } else if (parsedUrl.host == 'www.facebook.com') {
+            fb.getInfo(transformUrl(parsedUrl).toString()).then((info) => console.log(JSON.stringify(info, null, 2)));
+        }
     }
 }
 
@@ -61,8 +68,18 @@ function transformUrl(url) {
         url.protocol = 'http:';
         url.path = '/you/' + url.href.split('/').slice(3).join('/')
         url.href = 'http://' + proxyHost + url.path;
+    } else if (url.host == 'www.facebook.com') {
+        url.host = proxyHost;
+        url.hostname = proxyHost;
+        url.protocol = 'http:';
+        url.path = '/fb/' + url.href.split('/').slice(3).join('/')
+        url.href = 'http://' + proxyHost + url.path;
     }
     return url;
+}
+
+function youTubeToInfo(info) {
+    return
 }
 
 function drawButtons(info, formats) {
