@@ -95,13 +95,14 @@ function drawFacebook(info) {
     drawDisabledVideos();
     document.getElementById('previewImg').setAttribute('src', info.thumb);
     document.getElementById('previewImg').style.height = 'auto';
-    if (info.download.hd != null) {
-        var facebookButtons = document.getElementById('facebookDownloadButtons').children;
-        for (let i in facebookButtons) {
+    var facebookButtons = document.getElementById('facebookDownloadButtons').children;
+    for (let i in facebookButtons) {
+        let url = info.download[Object.keys(info.download)[i]];
+        if (url != null) {
             let button = facebookButtons[i];
             button.style.visibility = 'visible';
             button.classList.remove('disabled');
-            button.children[0].setAttribute('href', info.download[Object.keys(info.download)[i]]);
+            button.children[0].setAttribute('href', url);
             button.children[0].setAttribute('download', info.title);
         }
     }
