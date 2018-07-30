@@ -2,9 +2,13 @@ const urlParse = require('url').parse;
 const ytdl = require('ytdl-core');
 const http = require('http');
 const https = require('https');
+const scrape = require('metatag-crawler');
+const rest = require('restling');
+const Promise = require('bluebird');
 const fb = require('fb-video-downloader');
 
 const proxyHost = '149.56.251.89';
+const instagramRegex = /.*?<meta property="og:video".*?content="(.*?)".*?>.*?/g;
 
 window.onload = function () {
     window.onpopstate = processUrl;
@@ -32,6 +36,10 @@ function validateUrl() {
             fetchInfo(url);
         } else if (parsedUrl.host == 'www.facebook.com') {
             fb.getInfo(transformUrl(parsedUrl).toString()).then((info) => drawFacebook(info));
+        } else if (parsedUrl.host == 'twitter.com') {
+            var a = parseTwitter(transformUrl(parsedUrl).toString());
+        } else if (parsedUrl.host == 'www.instagram.com') {
+            var a = parseInstagram(transformUrl(parsedUrl).toString());
         }
     }
 }
@@ -74,8 +82,48 @@ function transformUrl(url) {
         url.protocol = 'http:';
         url.path = '/fb/' + url.href.split('/').slice(3).join('/')
         url.href = 'http://' + proxyHost + url.path;
+    } else if (url.host == 'twitter.com') {
+        url.host = proxyHost;
+        url.hostname = proxyHost;
+        url.protocol = 'http:';
+        url.path = '/tw/' + url.href.split('/').slice(3).join('/')
+        url.href = 'http://' + proxyHost + url.path;
+    } else if (url.host == 'www.instagram.com') {
+        url.host = proxyHost;
+        url.hostname = proxyHost;
+        url.protocol = 'http:';
+        url.path = '/instagram/' + url.href.split('/').slice(3).join('/')
+        url.href = 'http://' + proxyHost + url.path;
     }
     return url;
+}
+
+function parseTwitter(url) {
+    return new Promise((resolve, reject) => {
+        scrape(url, (err, data) => {
+            rest.get(transformUrl(new URL(data.og.videos[0].url)).toString()).then(function (result) {
+                let myRegexp = /data-config=\"(.*?)\"/g;
+                let match = myRegexp.exec(result.data);
+                let json = match[1].replace(/\&quot;/g, '"');
+                let urlvid = JSON.parse(json).video_url;
+                resolve(urlvid);
+            }, function (error) {
+                if (error.response) {
+                    reject(error.response);
+                }
+            });
+        });
+    });
+}
+
+
+function parseInstagram(url) {
+    fetch(new Request(url.toString())).then(function(response) {
+       return response.text();
+    }).then(function(text) {
+        var match = instagramRegex.exec(text);
+        var url = match[1];
+    });
 }
 
 function disableAll() {
