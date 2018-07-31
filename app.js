@@ -8,7 +8,10 @@ const Promise = require('bluebird');
 const fb = require('fb-video-downloader');
 
 const proxyHost = '149.56.251.89';
-const instagramRegex = /.*?<meta property="og:video".*?content="(.*?)".*?>.*?/g;
+const instagramTitleRegex = /.*?<meta property="og:title".*?content="(.*?)".*?>.*?/g;
+const instagramThumbRegex = /.*?<meta property="og:image".*?content="(.*?)".*?>.*?/g;
+const instagramUrlRegex = /.*?<meta property="og:video".*?content="(.*?)".*?>.*?/g;
+// const instagramVideoRegex = /.*?<video.*?poster="(.*?)".*?src="(.*?)".*?>.*?/g;
 
 window.onload = function () {
     window.onpopstate = processUrl;
@@ -118,11 +121,16 @@ function parseTwitter(url) {
 
 
 function parseInstagram(url) {
-    fetch(new Request(url.toString())).then(function(response) {
-       return response.text();
-    }).then(function(text) {
-        var match = instagramRegex.exec(text);
-        var url = match[1];
+    fetch(new Request(url.toString())).then(function (response) {
+        return response.text();
+    }).then(function (text) {
+        var title = instagramTitleRegex.exec(text)[1];
+        instagramTitleRegex.lastIndex = 0;
+        var thumb = instagramThumbRegex.exec(text)[1];
+        instagramThumbRegex.lastIndex = 0;
+        var url = instagramUrlRegex.exec(text)[1];
+        instagramUrlRegex.lastIndex = 0;
+        drawInstagram({title: title, thumb: thumb, url: url});
     });
 }
 
@@ -133,6 +141,9 @@ function disableAll() {
     var facebook = document.getElementById('facebookDownloadButtons');
     facebook.classList.remove('enabled');
     facebook.classList.add('disabled');
+    var instagram = document.getElementById('instagramDownloadButtons');
+    instagram.classList.remove('enabled');
+    instagram.classList.add('disabled');
 }
 
 function drawFacebook(info) {
@@ -154,6 +165,21 @@ function drawFacebook(info) {
             button.children[0].setAttribute('download', info.title);
         }
     }
+}
+
+function drawInstagram(info) {
+    disableAll();
+    var instagram = document.getElementById('instagramDownloadButtons');
+    instagram.classList.remove('disabled');
+    instagram.classList.add('enabled');
+    drawDisabledVideos();
+    document.getElementById('previewImg').setAttribute('src', info.thumb);
+    document.getElementById('previewImg').style.height = 'auto';
+    var instagramButton = instagram.children[0];
+    instagramButton.style.visibility = 'visible';
+    instagramButton.classList.remove('disabled');
+    instagramButton.children[0].setAttribute('href', info.url);
+    instagramButton.children[0].setAttribute('download', info.title);
 }
 
 function drawButtons(info, formats) {
