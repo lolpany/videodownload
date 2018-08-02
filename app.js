@@ -11,6 +11,9 @@ const proxyHost = '149.56.251.89';
 const instagramTitleRegex = /.*?<meta property="og:title".*?content="(.*?)".*?>.*?/g;
 const instagramThumbRegex = /.*?<meta property="og:image".*?content="(.*?)".*?>.*?/g;
 const instagramUrlRegex = /.*?<meta property="og:video".*?content="(.*?)".*?>.*?/g;
+const odnoklassnikiRegex = /.*?data-options="(.*?)".*?/g;
+const pluralSightTitleRegex = /.*?<a.*?id="course-title-link".*?>(.*?)<\/a>.*?/g;
+const pluralSightUrlRegex = /.*?<video.*?src="(.*?)".*?>.*?/g;
 // const instagramVideoRegex = /.*?<video.*?poster="(.*?)".*?src="(.*?)".*?>.*?/g;
 
 window.onload = function () {
@@ -40,9 +43,13 @@ function validateUrl() {
         } else if (parsedUrl.host == 'www.facebook.com') {
             fb.getInfo(transformUrl(parsedUrl).toString()).then((info) => drawFacebook(info));
         } else if (parsedUrl.host == 'twitter.com') {
-            var a = parseTwitter(transformUrl(parsedUrl).toString());
+            parseTwitter(transformUrl(parsedUrl).toString());
         } else if (parsedUrl.host == 'www.instagram.com') {
-            var a = parseInstagram(transformUrl(parsedUrl).toString());
+            parseInstagram(transformUrl(parsedUrl).toString());
+        } else if (parsedUrl.host == 'app.pluralsight.com') {
+            parsePluralSight(transformUrl(parsedUrl).toString());
+        } else if (parsedUrl.host == 'ok.ru') {
+            parseOdnoklassniki(transformUrl(parsedUrl).toString());
         }
     }
 }
@@ -63,7 +70,7 @@ function fetchYoutubeUrl(info, options) {
     // var link = document.getElementById('link');
     // link.setAttribute('href', format.url) ;
     // link.innerText = format.url;
-    drawButtons(info, info.formats);
+    drawYouTube(info);
 }
 
 function transformUrl(url) {
@@ -96,6 +103,18 @@ function transformUrl(url) {
         url.hostname = proxyHost;
         url.protocol = 'http:';
         url.path = '/instagram/' + url.href.split('/').slice(3).join('/')
+        url.href = 'http://' + proxyHost + url.path;
+    }  else if (url.host == 'app.pluralsight.com') {
+        url.host = proxyHost;
+        url.hostname = proxyHost;
+        url.protocol = 'http:';
+        url.path = '/pluralsight/' + url.href.split('/').slice(3).join('/')
+        url.href = 'http://' + proxyHost + url.path;
+    } else if (url.host == 'ok.ru') {
+        url.host = proxyHost;
+        url.hostname = proxyHost;
+        url.protocol = 'http:';
+        url.path = '/ok/' + url.href.split('/').slice(3).join('/')
         url.href = 'http://' + proxyHost + url.path;
     }
     return url;
@@ -134,6 +153,31 @@ function parseInstagram(url) {
     });
 }
 
+function parsePluralSight(url) {
+    fetch(new Request(url.toString())).then(function (response) {
+        return response.text();
+    }).then(function (text) {
+        var title = pluralSightTitleRegex.exec(text)[1];
+        pluralSightTitleRegex.lastIndex = 0;
+        var url = pluralSightUrlRegex.exec(text)[1];
+        pluralSightUrlRegex.lastIndex = 0;
+        drawPluralSight({title: title, thumb: null, url: url});
+    });
+}
+
+function parseOdnoklassniki(url) {
+    fetch(new Request(url.toString())).then(function (response) {
+        return response.text();
+    }).then(function (text) {
+        var metadata = JSON.parse(JSON.parse(odnoklassnikiRegex.exec(text)[1].replace(/\&quot;/g, '"')).flashvars.metadata);
+        odnoklassnikiRegex.lastIndex = 0;
+        var title = metadata.movie.title;
+        var thumb = metadata.movie.poster;
+        var formats = metadata.videos.reverse();
+        drawOdnoklassniki({title: title, thumb: thumb, formats: formats});
+    });
+}
+
 function disableAll() {
     var youtube = document.getElementById('youtubeDownloadButtons');
     youtube.classList.remove('enabled');
@@ -144,6 +188,12 @@ function disableAll() {
     var instagram = document.getElementById('instagramDownloadButtons');
     instagram.classList.remove('enabled');
     instagram.classList.add('disabled');
+    var odnoklassniki = document.getElementById('odnoklassnikiDownloadButtons');
+    odnoklassniki.classList.remove('enabled');
+    odnoklassniki.classList.add('disabled');
+    var pluralSight = document.getElementById('pluralSightDownloadButtons');
+    pluralSight.classList.remove('enabled');
+    pluralSight.classList.add('disabled');
 }
 
 function drawFacebook(info) {
@@ -182,13 +232,63 @@ function drawInstagram(info) {
     instagramButton.children[0].setAttribute('download', info.title);
 }
 
-function drawButtons(info, formats) {
+function drawOdnoklassniki(info) {
+    disableAll();
+    drawDisabledVideos();
+    // var videoLabel = document.getElementById('videoLabel');
+    // videoLabel.classList.remove('disabled');
+    document.getElementById('previewImg').setAttribute('src', info.thumb);
+    document.getElementById('previewImg').style.height = 'auto';
+    var odnoklassniki = document.getElementById('odnoklassnikiDownloadButtons');
+    odnoklassniki.classList.remove('disabled');
+    odnoklassniki.classList.add('enabled');
+    var buttons = odnoklassniki.children;
+    for (let i = 0; i < info.formats.length; i++) {
+        var button = buttons[i];
+        button.style.visibility = 'visible';
+        button.classList.remove('disabled');
+        button.children[0].setAttribute('href', info.formats[i].url);
+        button.children[0].setAttribute('download', info.title);
+    }
+}
+
+function drawPluralSight(info) {
+    disableAll();
+    var pluralSight = document.getElementById('pluralSightDownloadButtons');
+    pluralSight.classList.remove('disabled');
+    pluralSight.classList.add('enabled');
+    drawDisabledVideos();
+    // document.getElementById('previewImg').setAttribute('src', info.thumb);
+    // document.getElementById('previewImg').style.height = 'auto';
+    var instagramButton = pluralSight.children[0];
+    instagramButton.style.visibility = 'visible';
+    instagramButton.classList.remove('disabled');
+    instagramButton.children[0].setAttribute('href', info.url);
+    instagramButton.children[0].setAttribute('download', info.title);
+}
+
+function drawPluralSight(info) {
+    disableAll();
+    var instagram = document.getElementById('instagramDownloadButtons');
+    instagram.classList.remove('disabled');
+    instagram.classList.add('enabled');
+    drawDisabledVideos();
+    document.getElementById('previewImg').setAttribute('src', info.thumb);
+    document.getElementById('previewImg').style.height = 'auto';
+    var instagramButton = instagram.children[0];
+    instagramButton.style.visibility = 'visible';
+    instagramButton.classList.remove('disabled');
+    instagramButton.children[0].setAttribute('href', info.url);
+    instagramButton.children[0].setAttribute('download', info.title);
+}
+
+function drawYouTube(info) {
     disableAll();
     var youtube = document.getElementById('youtubeDownloadButtons');
     youtube.classList.remove('disabled');
     youtube.classList.add('enabled');
-    processVideos(info, formats);
-    processAudios(info.title, formats);
+    processVideos(info, info.formats);
+    processAudios(info.title, info.formats);
 }
 
 function processVideos(info, formats) {
@@ -250,6 +350,7 @@ function drawVideos(info, videos) {
 }
 
 function drawDisabledVideos() {
+    document.getElementById('preview').style.display = 'flex';
     var previewImg = document.getElementById('previewImg');
     previewImg.src = '//:0';
     previewImg.style.height = 0;

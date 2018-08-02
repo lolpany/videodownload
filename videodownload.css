@@ -73,6 +73,10 @@ body {
     display: flex;
 }
 
+#preview.disabled {
+    display: none;
+}
+
 #previewImg {
     /*display: block;*/
     width: 100%;
@@ -155,6 +159,46 @@ body {
 
 #instagram.disabled {
 
+}
+
+#pluralSightDownloadButtons {
+    grid-column: 4/6;
+    grid-row: 1/8;
+    font-size: 6vh;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+}
+
+#pluralSightDownloadButtons.disabled {
+    display: none;
+}
+
+#pluralSight {
+    margin: 0 3vh;
+}
+
+#pluralSight.disabled {
+
+}
+
+#odnoklassnikiDownloadButtons {
+    grid-column: 4/6;
+    grid-row: 1/8;
+    font-size: 6vh;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(6, 1fr);
+}
+
+#odnoklassnikiDownloadButtons.disabled {
+    display: none;
+}
+
+#odnoklassnikiDownloadButtons > .videoButton {
+    margin: 3px 5vh;
 }
 
 #videoLabel {
