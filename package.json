@@ -4,9 +4,9 @@
   "dependencies": {
     "fb-video-downloader": "^1.0.3",
     "https-proxy-agent": "^2.2.1",
+    "metatag-crawler": "latest",
     "twitter": "^1.7.1",
     "twitter-dl": "^1.0.6",
-    "ytdl-core": "^0.20.4",
-    "metatag-crawler": "latest"
+    "ytdl-core": "^0.20.4"
   }
 }

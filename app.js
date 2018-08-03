@@ -2,10 +2,8 @@ const urlParse = require('url').parse;
 const ytdl = require('ytdl-core');
 const http = require('http');
 const https = require('https');
-const scrape = require('metatag-crawler');
-const rest = require('restling');
-const Promise = require('bluebird');
 const fb = require('fb-video-downloader');
+// const ffmpeg = require("ffmpeg.js");
 
 const proxyHost = '149.56.251.89';
 const instagramTitleRegex = /.*?<meta property="og:title".*?content="(.*?)".*?>.*?/g;
@@ -24,6 +22,24 @@ window.onload = function () {
 };
 
 function processUrl() {
+    // var stdout = "";
+    // var stderr = "";
+    // ffmpeg({
+    //     MEMFS: [{name: "test.m3u8", data: testData}],
+    //     arguments: [
+    //         "-i", "https://video.twimg.com/amplify_video/836294479623553024/pl/1280x720/fGBvjHPJGgHBlhFc.m3u8", "-bsf:a", "aac_adtstoasc", "-vcodec", "copy", "-c", "copy", "-crf", "50", "file.mp4"
+    //     ],
+    //     print: function (data) {
+    //         stdout += data + "\n";
+    //     },
+    //     printErr: function (data) {
+    //         stderr += data + "\n";
+    //     },
+    //     onExit: function (code) {
+    //         console.log("Process exited with code " + code);
+    //         console.log(stdout);
+    //     },
+    // });
     var url = decodeURIComponent(window.location.search.substr(5));
     if (url != null && url != '') {
         drawDisabledVideos();
@@ -104,7 +120,7 @@ function transformUrl(url) {
         url.protocol = 'http:';
         url.path = '/instagram/' + url.href.split('/').slice(3).join('/')
         url.href = 'http://' + proxyHost + url.path;
-    }  else if (url.host == 'app.pluralsight.com') {
+    } else if (url.host == 'app.pluralsight.com') {
         url.host = proxyHost;
         url.hostname = proxyHost;
         url.protocol = 'http:';
@@ -116,25 +132,25 @@ function transformUrl(url) {
         url.protocol = 'http:';
         url.path = '/ok/' + url.href.split('/').slice(3).join('/')
         url.href = 'http://' + proxyHost + url.path;
+    } else if (url.host == 'vd48.mycdn.me') {
+        url.path = '/cdnme/' + url.href.split('/').slice(3).join('/');
     }
+    url.host = proxyHost;
+    url.hostname = proxyHost;
+    url.protocol = 'http:';
+    url.href = 'http://' + proxyHost + url.path;
     return url;
 }
 
 function parseTwitter(url) {
-    return new Promise((resolve, reject) => {
-        scrape(url, (err, data) => {
-            rest.get(transformUrl(new URL(data.og.videos[0].url)).toString()).then(function (result) {
-                let myRegexp = /data-config=\"(.*?)\"/g;
-                let match = myRegexp.exec(result.data);
-                let json = match[1].replace(/\&quot;/g, '"');
-                let urlvid = JSON.parse(json).video_url;
-                resolve(urlvid);
-            }, function (error) {
-                if (error.response) {
-                    reject(error.response);
-                }
-            });
-        });
+    fetch(new Request(url)).then(function (response) {
+        return response.text();
+    }).then(function (text) {
+        let myRegexp = /.*?data-config="(.*?).*?"/g;
+        let match = myRegexp.exec(result.data);
+        let json = match[1].replace(/&quot;/g, '"');
+        let urlvid = JSON.parse(json).video_url;
+        resolve(urlvid);
     });
 }
 
