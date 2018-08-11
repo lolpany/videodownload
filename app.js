@@ -3,16 +3,27 @@ const ytdl = require('ytdl-core');
 const http = require('http');
 const https = require('https');
 const fb = require('fb-video-downloader');
+const windows1251 = require('windows-1251');
 // const ffmpeg = require("ffmpeg.js");
 
 const proxyHost = '149.56.251.89';
 const instagramTitleRegex = /.*?<meta property="og:title".*?content="(.*?)".*?>.*?/g;
 const instagramThumbRegex = /.*?<meta property="og:image".*?content="(.*?)".*?>.*?/g;
 const instagramUrlRegex = /.*?<meta property="og:video".*?content="(.*?)".*?>.*?/g;
+const vkParamsRegex = /.*?"params":\[(.*)]}.*?/;
+const vkTitleRegex = /.*?<!--\d+<!><!>\d+<!>\d+<!>\d+<!>(.*?)<!>.*?/g;
+// const vkTitleRegex = /.*?<video.*?title="(.*?)".*?>.*?/g;
+const vkThumbRegex = /.*?<video.*?poster="(.*?)".*?>.*?/g;
+const vkUrlsRegex = /<source src="(.*?)" type="video\/mp4" \/>/g;
 const odnoklassnikiRegex = /.*?data-options="(.*?)".*?/g;
 const pluralSightTitleRegex = /.*?<a.*?id="course-title-link".*?>(.*?)<\/a>.*?/g;
 const pluralSightUrlRegex = /.*?<video.*?src="(.*?)".*?>.*?/g;
 // const instagramVideoRegex = /.*?<video.*?poster="(.*?)".*?src="(.*?)".*?>.*?/g;
+
+
+const proxyMap = {
+    'vk.com': 'vk'
+};
 
 window.onload = function () {
     window.onpopstate = processUrl;
@@ -54,18 +65,20 @@ function validateUrl() {
     if (url != null) {
         history.pushState(null, null, window.location.href.split('?', 2)[0] + '?url=' + encodeURIComponent(url));
         var parsedUrl = new URL(url);
-        if (parsedUrl.host == 'www.youtube.com') {
+        if (parsedUrl.host == 'www.youtube.com' || parsedUrl.host == 'm.youtube.com') {
             fetchInfo(url);
-        } else if (parsedUrl.host == 'www.facebook.com') {
+        } else if (parsedUrl.host == 'www.facebook.com' || parsedUrl.host == 'm.facebook.com') {
             fb.getInfo(transformUrl(parsedUrl).toString()).then((info) => drawFacebook(info));
         } else if (parsedUrl.host == 'twitter.com') {
             parseTwitter(transformUrl(parsedUrl).toString());
-        } else if (parsedUrl.host == 'www.instagram.com') {
+        } else if (parsedUrl.host == 'www.instagram.com' || parsedUrl.host == 'm.instagram.com') {
             parseInstagram(transformUrl(parsedUrl).toString());
         } else if (parsedUrl.host == 'app.pluralsight.com') {
             parsePluralSight(transformUrl(parsedUrl).toString());
         } else if (parsedUrl.host == 'ok.ru') {
             parseOdnoklassniki(transformUrl(parsedUrl).toString());
+        } else if (parsedUrl.host == 'vk.com') {
+            parseVk(transformUrl(parsedUrl).toString());
         }
     }
 }
@@ -96,13 +109,13 @@ function transformUrl(url) {
         url.protocol = 'http:';
         url.path = '/vid/' + url.href.split('/').slice(3).join('/');
         url.href = 'http://' + proxyHost + url.path;
-    } else if (url.host == 'www.youtube.com') {
+    } else if (url.host == 'www.youtube.com' || url.host == 'm.youtube.com') {
         url.host = proxyHost;
         url.hostname = proxyHost;
         url.protocol = 'http:';
         url.path = '/you/' + url.href.split('/').slice(3).join('/')
         url.href = 'http://' + proxyHost + url.path;
-    } else if (url.host == 'www.facebook.com') {
+    } else if (url.host == 'www.facebook.com'|| url.host == 'm.facebook.com') {
         url.host = proxyHost;
         url.hostname = proxyHost;
         url.protocol = 'http:';
@@ -114,7 +127,7 @@ function transformUrl(url) {
         url.protocol = 'http:';
         url.path = '/tw/' + url.href.split('/').slice(3).join('/')
         url.href = 'http://' + proxyHost + url.path;
-    } else if (url.host == 'www.instagram.com') {
+    } else if (url.host == 'www.instagram.com'|| url.host == 'm.instagram.com') {
         url.host = proxyHost;
         url.hostname = proxyHost;
         url.protocol = 'http:';
@@ -134,6 +147,8 @@ function transformUrl(url) {
         url.href = 'http://' + proxyHost + url.path;
     } else if (url.host == 'vd48.mycdn.me') {
         url.path = '/cdnme/' + url.href.split('/').slice(3).join('/');
+    } else if (proxyMap[url.host] != null) {
+        url.path = '/' + proxyMap[url.host] + '/' + url.href.split('/').slice(3).join('/');
     }
     url.host = proxyHost;
     url.hostname = proxyHost;
@@ -191,6 +206,33 @@ function parseOdnoklassniki(url) {
         var thumb = metadata.movie.poster;
         var formats = metadata.videos.reverse();
         drawOdnoklassniki({title: title, thumb: thumb, formats: formats});
+    });
+}
+
+function parseVk(url) {
+    fetch(new Request('http://' + proxyHost + '/vk/al_video.php?act=show_inline&al=1&video=-' + url.split('-')[1]),
+        {
+            headers: {
+                'User-Agent': ''
+            }
+        }
+    ).then(function (response) {
+        return response.text();
+    }).then(function (text) {
+        // var params = JSON.parse(vkParamsRegex.exec(text)[1]);
+        // vkParamsRegex.lastIndex = 0;
+        var title = windows1251.decode(vkTitleRegex.exec(text)[1]);
+        vkTitleRegex.lastIndex = 0;
+        var thumb = vkThumbRegex.exec(text)[1];
+        vkThumbRegex.lastIndex = 0;
+        var formats = [];
+        var urlsMatch = vkUrlsRegex.exec(text);
+        while (urlsMatch != null) {
+            formats.push(urlsMatch[1]);
+            urlsMatch = vkUrlsRegex.exec(text);
+        }
+        vkUrlsRegex.lastIndex = 0;
+        drawVk({title: title, thumb: thumb, formats: formats});
     });
 }
 
